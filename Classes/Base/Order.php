@@ -6,11 +6,19 @@ use \Base\Cart as Cart;
 
 class Order
 {
-    protected $number;
-    protected Cart $cart;
+    protected static $incrementor = 0;    
 
-    public function __construct()
+    protected $id;
+    protected $cart;
+
+    public function __construct(Cart $cart)
     {
-        
+        // @TODO: throw exception
+        $id = 'ORD'.(1000000 + ++self::$incrementor);
+    }
+
+    public function getId()
+    {
+        return $this->getId();
     }
 }
