@@ -3,7 +3,7 @@
 require_once 'Autoloader.php';
 
 use \Base\Cart as Cart;
-// use \Base\Order as Order;
+use \Base\Order as Order;
 use \ProductTypes\Food as Food;
 use \ProductTypes\MusicAlbum as MusicAlbum;
 use \ProductTypes\Pencil as Pencil;
@@ -37,5 +37,7 @@ echo nl2br($cart);
 $cart->remove(0);
 echo nl2br($cart);
 
-// $ord = new Order($cart);
-// echo $ord->getId().PHP_EOL;
+$ord = new Order($cart);
+echo $ord->getId().PHP_EOL;
+
+echo nl2br($ord);

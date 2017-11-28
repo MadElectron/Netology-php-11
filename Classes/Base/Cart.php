@@ -75,6 +75,5 @@ class Cart
 
             return $result;
         }
-        
     }
 }
