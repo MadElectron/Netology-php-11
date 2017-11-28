@@ -2,9 +2,11 @@
 
 require_once 'Autoloader.php';
 
+use \Base\Cart as Cart;
 use \ProductTypes\Food as Food;
 use \ProductTypes\MusicAlbum as MusicAlbum;
 use \ProductTypes\Pencil as Pencil;
+
 
 // ==== Main code ====
 
@@ -22,3 +24,14 @@ echo $cowboysFromHell->getPrice().PHP_EOL;
 
 $yellowPencil = new Pencil('Standard boring yellow pencil', 20, [255, 255, 0]);
 echo $yellowPencil->getPrice().PHP_EOL;
+
+$cart = new Cart();
+
+$cart->add($potatoes);
+$cart->add($whiskey);
+
+echo $cart->getTotal().PHP_EOL;
+echo nl2br($cart);
+
+$cart->remove(0);
+echo nl2br($cart);
