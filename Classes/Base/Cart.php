@@ -2,6 +2,8 @@
 
 namespace Base;
 use \Base\Product as Product;
+use \Exceptions\NoPriceException as NoPriceException;
+use \Exceptions\NoProductException as NoProductException;
 
 class Cart
 {
@@ -32,16 +34,37 @@ class Cart
 
     public function add(Product $product)
     {
-        // @TODO: throw exception if no price
-        $this->products[] = $product;
+       try {
+            if ($product->getPrice()){
+                $this->products[] = $product;
+            }
+            else {
+                throw new NoPriceException("Цена товара {$product->getTitle()} указана или равна 0!");
+            }
+        } catch (NoPriceException $e) {
+            echo 'Внимание! '.$e->getMessage().PHP_EOL;
+        }
+   
+        
 
         return $this;
     }
 
     public function remove($id)
     {
-        // @TODO: throw exception if no product
-        unset($this->products[$id]);
+
+        try {
+            if (in_array($id, array_keys($this->products))){
+                unset($this->products[$id]);
+            }
+            else {
+                throw new NoProductException("Товара с id $id нет в корзине!");
+            }
+        } catch (NoProductException $e) {
+            echo 'Внимание! '.$e->getMessage().PHP_EOL;
+        }
+
+        
 
         return $this;
     }
